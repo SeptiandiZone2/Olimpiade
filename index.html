@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olimpiade Pendidikan Pancasila SMP - Kab. Sukabumi</title>
+    
+    <!-- SEO & Thumbnail Blogger (Hidden) -->
+    <div style="display:none;">
+        <img src="https://i.postimg.cc/85ptj0zm/Whats-App-Image-2026-09-02-at-22-15-02.jpg" alt="Thumbnail MGMP">
+        <img src="https://i.postimg.cc/dtknkdwR/Whats-App-Image-2026-09-02-at-22-23-50.jpg" alt="Thumbnail Olimpiade">
+    </div>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { poppins: ['Poppins', 'sans-serif'] },
+                    colors: {
+                        'pancasila-blue': '#0b2046',
+                        'pancasila-red': '#c4122f',
+                        'pancasila-gold': '#d4af37',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Override Blogger Default Styles to ensure Full Screen App */
+        body, html { margin: 0; padding: 0; height: 100%; font-family: 'Poppins', sans-serif; background-color: #f8fafc; }
+        .blogger-app-wrapper { position: relative; width: 100%; min-height: 100vh; z-index: 10; background: #f8fafc; }
+        /* Hide Blogger Native Elements (Adjust if needed) */
+        .widget, .header, .footer, .sidebar, #header-inner, #footer-inner, .post-title { display: none !important; }
+        .post-body { margin: 0 !important; padding: 0 !important; }
+        
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #0b2046;
+            border-radius: 50%;
+            width: 40px; height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+<div class="blogger-app-wrapper font-poppins text-slate-800 relative">
+    
+    <!-- NAVBAR -->
+    <nav class="bg-pancasila-blue text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <!-- Fallback placeholder applied via onerror if images fail to load -->
+                    <img src="https://i.postimg.cc/85ptj0zm/Whats-App-Image-2026-09-02-at-22-15-02.jpg" onerror="this.src='https://placehold.co/40x40/ffffff/0b2046?text=M'" alt="Logo MGMP" class="h-10 w-10 rounded-full bg-white p-1 object-cover">
+                    <img src="https://i.postimg.cc/dtknkdwR/Whats-App-Image-2026-09-02-at-22-23-50.jpg" onerror="this.src='https://placehold.co/40x40/ffffff/0b2046?text=O'" alt="Logo Olimpiade" class="h-10 w-10 rounded-full bg-white p-1 object-cover">
+                    <span class="font-bold text-lg hidden sm:block">Olimpiade Pancasila SMP</span>
+                </div>
+                <div class="flex items-center space-x-2 sm:space-x-4">
+                    <button onclick="navigate('home')" class="hover:text-pancasila-gold transition text-sm sm:text-base"><i class="fas fa-home"></i> <span class="hidden sm:inline">Beranda</span></button>
+                    <button onclick="navigate('data')" class="hover:text-pancasila-gold transition text-sm sm:text-base"><i class="fas fa-users"></i> <span class="hidden sm:inline">Data Peserta</span></button>
+                    <button id="btn-nav-admin" onclick="navigate('login')" class="bg-pancasila-red hover:bg-red-700 px-3 sm:px-4 py-2 rounded-md font-semibold text-xs sm:text-sm transition shadow-md"><i class="fas fa-lock"></i> Admin</button>
+                    <button id="btn-nav-logout" onclick="logoutAdmin()" class="hidden bg-gray-600 hover:bg-gray-700 px-3 sm:px-4 py-2 rounded-md font-semibold text-xs sm:text-sm transition shadow-md"><i class="fas fa-sign-out-alt"></i> Keluar</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SECTION: BERANDA (HOME) -->
+    <div id="section-home" class="block">
+        <!-- Hero Banner Area -->
+        <div class="relative text-white py-16 px-4 text-center overflow-hidden">
+            <!-- Background Image dengan efek blur yang dikurangi (dipisahkan agar tidak mem-blur konten) -->
+            <div class="absolute inset-0 z-0 scale-105 bg-cover bg-center bg-no-repeat filter blur-sm" style="background-image: url('https://i.postimg.cc/HkspppQc/Whats-App-Image-2026-09-02-at-22-23-49.jpg'); opacity: 0.7;"></div>
+            
+            <!-- Overlay gelap untuk meningkatkan kontras teks -->
+            <div class="absolute inset-0 bg-black bg-opacity-40 z-0"></div>
+            
+            <div class="relative z-10">
+                <h1 class="text-3xl md:text-5xl font-bold mb-4 uppercase tracking-wide text-pancasila-gold drop-shadow-lg">
+                    Olimpiade Pendidikan Pancasila
+                </h1>
+                <h2 class="text-xl md:text-2xl mb-8 drop-shadow-md">Tingkat SMP Kabupaten Sukabumi Tahun 2026</h2>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mb-8">
+                    <div class="bg-black/50 p-4 rounded-lg backdrop-blur-md border border-white/30 shadow-lg">
+                        <i class="fas fa-calendar-alt text-3xl mb-2 text-pancasila-red"></i>
+                        <p class="font-semibold text-white drop-shadow">Pelaksanaan</p>
+                        <p class="text-sm text-gray-200">30 September 2026</p>
+                    </div>
+                    <div class="bg-black/50 p-4 rounded-lg backdrop-blur-md border border-white/30 shadow-lg">
+                        <i class="fas fa-map-marker-alt text-3xl mb-2 text-pancasila-red"></i>
+                        <p class="font-semibold text-white drop-shadow">Tempat</p>
+                        <p class="text-sm text-gray-200">SMPN MODEL Cikembang</p>
+                    </div>
+                </div>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdP4_2BszueiSB3vHXqEKBct7puitlt6Y6-cUYtR5HvFz7g_g/viewform?usp=publish-editor" target="_blank" class="inline-block bg-pancasila-gold text-pancasila-blue font-bold text-sm sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full shadow-lg hover:scale-105 transition transform">
+                    <i class="fas fa-paper-plane mr-2"></i> Mendaftar Sekarang (GForm)
+                </a>
+                <p class="mt-4 text-sm font-light drop-shadow-sm text-gray-200">Pendaftaran dibuka: 7 - 22 September 2026</p>
+            </div>
+        </div>
+
+        <!-- Info Grid -->
+        <div class="max-w-7xl mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Info Pendaftaran -->
+                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-pancasila-blue">
+                    <h3 class="text-xl font-bold mb-4 text-pancasila-blue border-b pb-2"><i class="fas fa-info-circle mr-2"></i> Informasi Pendaftaran</h3>
+                    <ul class="space-y-3 text-gray-700 text-sm sm:text-base">
+                        <li><i class="fas fa-check-circle text-green-500 mr-2"></i> <strong>Biaya:</strong> Rp. 100.000,- / Peserta</li>
+                        <li><i class="fas fa-money-check-alt text-blue-500 mr-2"></i> <strong>Rekening Pembayaran:</strong> <br>
+                            Bank BJB - <strong>0019251837100</strong> a/n Herlina
+                        </li>
+                        <li><i class="fas fa-upload text-purple-500 mr-2"></i> <strong>Bukti Transfer:</strong> Diunggah melalui Link GForm pendaftaran di atas.</li>
+                        <li><i class="fas fa-map-pin text-red-500 mr-2"></i> <strong>Lokasi Lomba:</strong> Jl. Palabuhan II Km. 22 Cikembang, Kec. Cikembar, Kab. Sukabumi, Prov. Jawa Barat.</li>
+                    </ul>
+                </div>
+
+                <!-- Kontak -->
+                <div class="bg-white p-6 rounded-xl shadow-md border-t-4 border-pancasila-red">
+                    <h3 class="text-xl font-bold mb-4 text-pancasila-red border-b pb-2"><i class="fas fa-headset mr-2"></i> Narahubung</h3>
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="bg-green-100 p-4 rounded-full flex-shrink-0">
+                            <i class="fab fa-whatsapp text-3xl text-green-600"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold text-lg">Nurinda Asriani, S.Pd.</p>
+                            <p class="text-gray-600 text-sm sm:text-base">Telp./WA: 0857-0366-6371</p>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/6285703666371" target="_blank" class="block w-full text-center bg-green-500 hover:bg-green-600 text-white font-semibold py-3 rounded-lg transition">
+                        Hubungi via WhatsApp
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION: DATA PESERTA PUBLIK -->
+    <div id="section-data" class="hidden max-w-7xl mx-auto px-4 py-12">
+        <h2 class="text-2xl sm:text-3xl font-bold text-center text-pancasila-blue mb-8 uppercase"><i class="fas fa-list-alt"></i> Daftar Peserta Terdaftar</h2>
+        
+        <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <div class="p-4 bg-gray-50 border-b flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
+                <span class="font-semibold text-gray-700 text-sm sm:text-base">Data Real-time dari Google Sheets</span>
+                <button onclick="loadPublicData()" class="text-sm bg-blue-100 text-blue-700 px-3 py-1 rounded hover:bg-blue-200 transition"><i class="fas fa-sync-alt"></i> Muat Ulang</button>
+            </div>
+            
+            <div class="overflow-x-auto w-full">
+                <table class="w-full text-left border-collapse min-w-[600px]">
+                    <thead>
+                        <tr class="bg-pancasila-blue text-white text-xs sm:text-sm uppercase tracking-wide">
+                            <th class="py-3 px-4 w-16 text-center">No</th>
+                            <th class="py-3 px-4">Nama Peserta</th>
+                            <th class="py-3 px-4">Asal Sekolah</th>
+                            <th class="py-3 px-4 text-center w-40">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="public-data-body" class="text-gray-700 text-sm">
+                        <!-- Data akan dirender disini -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="public-loader" class="hidden text-center py-8">
+                <div class="loader"></div>
+                <p class="text-gray-500 mt-2">Mengambil data...</p>
+            </div>
+            <div id="public-empty" class="hidden text-center py-8 text-gray-500">
+                Belum ada data pendaftar.
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION: LOGIN ADMIN -->
+    <div id="section-login" class="hidden flex items-center justify-center min-h-[70vh] px-4">
+        <div class="bg-white p-6 sm:p-8 rounded-xl shadow-2xl w-full max-w-md border-t-4 border-pancasila-red">
+            <div class="text-center mb-6">
+                <i class="fas fa-user-shield text-5xl text-pancasila-blue mb-3"></i>
+                <h2 class="text-2xl font-bold text-gray-800">Login Administrator</h2>
+                <p class="text-sm text-gray-500">Masuk untuk memvalidasi data pendaftar</p>
+            </div>
+            
+            <div id="login-error" class="hidden bg-red-100 border-l-4 border-red-500 text-red-700 p-3 mb-4 text-sm" role="alert">
+                Username atau Password salah!
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Username</label>
+                    <input type="text" id="login-user" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-pancasila-blue" placeholder="Masukkan username">
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                    <input type="password" id="login-pass" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-pancasila-blue" placeholder="Masukkan password">
+                </div>
+                <button onclick="processLogin()" id="btn-login-submit" class="w-full bg-pancasila-blue text-white font-bold py-3 rounded-md hover:bg-blue-900 transition flex justify-center items-center">
+                    <span id="login-text">Masuk</span>
+                    <i id="login-spinner" class="fas fa-circle-notch fa-spin ml-2 hidden"></i>
+                </button>
+            </div>
+            
+            <div class="mt-4 text-center text-xs text-gray-400 bg-gray-50 p-2 rounded">
+                <strong>Info Sandbox:</strong><br>
+                Mode Preview: admin / edudigital
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION: DASHBOARD ADMIN -->
+    <div id="section-admin" class="hidden max-w-7xl mx-auto px-4 py-12">
+        <div class="flex flex-col sm:flex-row justify-between items-center mb-6 space-y-4 sm:space-y-0">
+            <h2 class="text-2xl sm:text-3xl font-bold text-pancasila-blue uppercase"><i class="fas fa-tachometer-alt"></i> Panel Admin</h2>
+            <div class="flex space-x-2">
+                <button onclick="showAddManualModal()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-md">
+                    <i class="fas fa-user-plus mr-1"></i> Tambah Manual
+                </button>
+                <div class="bg-green-100 text-green-800 px-4 py-2 rounded-lg text-sm font-semibold border border-green-300">
+                    Status: Logged In
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+            <div class="p-4 bg-gray-50 border-b flex flex-col sm:flex-row justify-between items-center space-y-2 sm:space-y-0">
+                <span class="font-semibold text-gray-700 text-sm sm:text-base">Validasi Pembayaran & Pendaftaran</span>
+                <button onclick="loadAdminData()" class="text-sm bg-pancasila-blue text-white px-3 py-1 rounded hover:bg-blue-800 transition"><i class="fas fa-sync-alt"></i> Refresh Data</button>
+            </div>
+            
+            <div class="overflow-x-auto w-full">
+                <table class="w-full text-left border-collapse min-w-[800px]">
+                    <thead>
+                        <tr class="bg-gray-800 text-white text-xs sm:text-sm uppercase tracking-wide">
+                            <th class="py-3 px-3 w-12 text-center">No</th>
+                            <th class="py-3 px-3 w-32">Waktu Daftar</th>
+                            <th class="py-3 px-3">Nama & Sekolah</th>
+                            <th class="py-3 px-3">Narahubung (Guru)</th>
+                            <th class="py-3 px-3 w-24 text-center">Bukti Trf</th>
+                            <th class="py-3 px-3 w-32 text-center">Status</th>
+                            <th class="py-3 px-3 w-32 text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-data-body" class="text-gray-700 text-sm">
+                        <!-- Data Admin Render -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="admin-loader" class="hidden text-center py-8">
+                <div class="loader"></div>
+                <p class="text-gray-500 mt-2">Sinkronisasi data...</p>
+            </div>
+            <div id="admin-empty" class="hidden text-center py-8 text-gray-500">
+                Belum ada data masuk.
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION: CUSTOM MODALS -->
+    <!-- Modal Tambah Data Manual -->
+    <div id="manual-add-modal" class="hidden fixed inset-0 bg-black/60 z-[999999] flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6 transform transition-all">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-pancasila-blue"><i class="fas fa-user-plus mr-2"></i>Tambah Pendaftar</h3>
+                <button onclick="closeAddManualModal()" class="text-gray-500 hover:text-red-500 transition"><i class="fas fa-times text-xl"></i></button>
+            </div>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-1">Nama Peserta <span class="text-red-500">*</span></label>
+                    <input type="text" id="manual-nama" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-pancasila-blue" placeholder="Contoh: Budi Santoso">
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-1">Asal Sekolah <span class="text-red-500">*</span></label>
+                    <input type="text" id="manual-sekolah" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-pancasila-blue" placeholder="Contoh: SMPN 1 Cikembar">
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-1">Narahubung (Guru) <span class="text-red-500">*</span></label>
+                    <input type="text" id="manual-guru" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-pancasila-blue" placeholder="Contoh: Bpk. Andi">
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-1">Status Awal</label>
+                    <select id="manual-status" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-pancasila-blue bg-white">
+                        <option value="Lunas / Valid">Lunas / Valid (Otomatis Tervalidasi)</option>
+                        <option value="Menunggu Validasi">Menunggu Validasi</option>
+                    </select>
+                </div>
+                
+                <div class="mt-6 flex justify-end space-x-3 pt-4 border-t">
+                    <button onclick="closeAddManualModal()" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition text-sm font-semibold">Batal</button>
+                    <button onclick="submitManualData()" id="btn-submit-manual" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition text-sm font-semibold flex items-center">
+                        <span id="text-submit-manual">Simpan Data</span>
+                        <i id="spin-submit-manual" class="fas fa-spinner fa-spin ml-2 hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Confirm / Alert Modal Overlay -->
+    <div id="custom-modal" class="hidden fixed inset-0 bg-black/60 z-[999999] flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-xl shadow-2xl max-w-sm w-full p-6 transform transition-all scale-100 opacity-100">
+            <h3 id="modal-title" class="text-lg font-bold mb-2 text-pancasila-blue">Konfirmasi</h3>
+            <p id="modal-message" class="text-gray-600 mb-6 text-sm">Pesan disini</p>
+            <div class="flex justify-end space-x-3">
+                <button id="modal-btn-cancel" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition text-sm font-semibold">Batal</button>
+                <button id="modal-btn-confirm" class="px-4 py-2 bg-pancasila-blue text-white rounded-md hover:bg-blue-900 transition text-sm font-semibold">Ya</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- JAVASCRIPT LOGIC -->
+<script>
+    // ==========================================
+    // KONFIGURASI APLIKASI
+    // ==========================================
+    const IS_PREVIEW = false; 
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbx7zgy-YQV0VkARhFbDPw7WxBUXfyl1-NeQ8sSJuBGzZqxExK654-7rL0O85eiU58ay/execI"; 
+    
+    // State App
+    let currentUser = null;
+    let currentPass = null;
+
+    // Data Dummy Mode Preview
+    const dummyData = [
+        { rowId: 2, timestamp: "07/09/2026 08:15", nama: "Budi Santoso", sekolah: "SMPN 1 Cikembar", guru: "Bpk. Andi", bukti: "https://placehold.co/400x600/eeeeee/999999?text=Bukti+Transfer", status: "Menunggu Validasi" },
+        { rowId: 3, timestamp: "08/09/2026 10:30", nama: "Siti Aminah", sekolah: "SMPN MODEL Cikembang", guru: "Ibu Rina", bukti: "https://placehold.co/400x600/eeeeee/999999?text=Bukti+Transfer", status: "Lunas / Valid" },
+        { rowId: 4, timestamp: "09/09/2026 14:20", nama: "Ahmad Fauzi", sekolah: "SMPN 2 Cibadak", guru: "Bpk. Dedi", bukti: "", status: "Menunggu Validasi" }
+    ];
+
+    // Helper: Custom Modals untuk menghindari alert() dan confirm() native
+    function showCustomAlert(message) {
+        const modal = document.getElementById('custom-modal');
+        document.getElementById('modal-title').innerText = "Informasi";
+        document.getElementById('modal-title').className = "text-lg font-bold mb-2 text-pancasila-blue";
+        document.getElementById('modal-message').innerText = message;
+        
+        document.getElementById('modal-btn-cancel').classList.add('hidden');
+        
+        const confirmBtn = document.getElementById('modal-btn-confirm');
+        confirmBtn.innerText = "Tutup";
+        confirmBtn.onclick = () => modal.classList.add('hidden');
+        
+        modal.classList.remove('hidden');
+    }
+
+    function showCustomConfirm(title, message, onConfirmCallback, isDangerous = false) {
+        const modal = document.getElementById('custom-modal');
+        document.getElementById('modal-title').innerText = title;
+        document.getElementById('modal-title').className = `text-lg font-bold mb-2 ${isDangerous ? 'text-red-600' : 'text-pancasila-blue'}`;
+        document.getElementById('modal-message').innerText = message;
+        
+        const cancelBtn = document.getElementById('modal-btn-cancel');
+        cancelBtn.classList.remove('hidden');
+        cancelBtn.innerText = "Batal";
+        cancelBtn.onclick = () => modal.classList.add('hidden');
+        
+        const confirmBtn = document.getElementById('modal-btn-confirm');
+        confirmBtn.innerText = "Ya, Lanjutkan";
+        confirmBtn.className = `px-4 py-2 text-white rounded-md transition text-sm font-semibold ${isDangerous ? 'bg-red-600 hover:bg-red-800' : 'bg-pancasila-blue hover:bg-blue-900'}`;
+        confirmBtn.onclick = () => {
+            modal.classList.add('hidden');
+            onConfirmCallback();
+        };
+        
+        modal.classList.remove('hidden');
+    }
+
+    // Navigasi SPA (Single Page Application)
+    function navigate(page) {
+        document.getElementById('section-home').classList.add('hidden');
+        document.getElementById('section-data').classList.add('hidden');
+        document.getElementById('section-login').classList.add('hidden');
+        document.getElementById('section-admin').classList.add('hidden');
+
+        if(page === 'home') document.getElementById('section-home').classList.remove('hidden');
+        if(page === 'data') {
+            document.getElementById('section-data').classList.remove('hidden');
+            loadPublicData();
+        }
+        if(page === 'login') {
+            if(currentUser) {
+                document.getElementById('section-admin').classList.remove('hidden');
+                loadAdminData();
+            } else {
+                document.getElementById('section-login').classList.remove('hidden');
+            }
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Helper: Badge Status UI
+    function getStatusBadge(status) {
+        if(status === "Lunas / Valid" || status === "Tervalidasi") {
+            return `<span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-1 rounded border border-green-400 inline-block w-full text-center shadow-sm"><i class="fas fa-check-circle"></i> Valid</span>`;
+        }
+        return `<span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-1 rounded border border-yellow-400 inline-block w-full text-center shadow-sm"><i class="fas fa-clock"></i> Menunggu</span>`;
+    }
+
+    // 1. Load Data Publik
+    async function loadPublicData() {
+        const tbody = document.getElementById('public-data-body');
+        const loader = document.getElementById('public-loader');
+        const empty = document.getElementById('public-empty');
+        
+        tbody.innerHTML = "";
+        loader.classList.remove('hidden');
+        empty.classList.add('hidden');
+
+        try {
+            let data = [];
+            if(IS_PREVIEW) {
+                await new Promise(r => setTimeout(r, 800)); // Simulasi delay
+                data = dummyData;
+            } else {
+                const response = await fetch(`${GAS_URL}?action=getPublicData`);
+                const res = await response.json();
+                if(res.status === 'success') data = res.data;
+            }
+
+            loader.classList.add('hidden');
+            if(data.length === 0) {
+                empty.classList.remove('hidden');
+                return;
+            }
+
+            data.forEach((row, index) => {
+                tbody.innerHTML += `
+                    <tr class="border-b hover:bg-gray-50 transition">
+                        <td class="py-3 px-4 font-semibold text-center">${index + 1}</td>
+                        <td class="py-3 px-4 font-medium text-gray-800">${row.nama}</td>
+                        <td class="py-3 px-4 text-gray-600">${row.sekolah}</td>
+                        <td class="py-3 px-4 text-center">${getStatusBadge(row.status)}</td>
+                    </tr>
+                `;
+            });
+
+        } catch (error) {
+            loader.classList.add('hidden');
+            tbody.innerHTML = `<tr><td colspan="4" class="text-center text-red-500 py-4"><i class="fas fa-exclamation-triangle"></i> Gagal memuat data. Periksa koneksi.</td></tr>`;
+        }
+    }
+
+    // 2. Proses Login Admin
+    async function processLogin() {
+        const user = document.getElementById('login-user').value;
+        const pass = document.getElementById('login-pass').value;
+        const errBox = document.getElementById('login-error');
+        const btnText = document.getElementById('login-text');
+        const btnSpin = document.getElementById('login-spinner');
+
+        if(!user || !pass) return;
+
+        errBox.classList.add('hidden');
+        btnText.innerText = "Memverifikasi...";
+        btnSpin.classList.remove('hidden');
+        document.getElementById('btn-login-submit').disabled = true;
+
+        try {
+            let isValid = false;
+            if(IS_PREVIEW) {
+                await new Promise(r => setTimeout(r, 1000));
+                if(user === 'admin' && pass === 'edudigital') isValid = true;
+            } else {
+                const response = await fetch(`${GAS_URL}?action=login&user=${encodeURIComponent(user)}&pass=${encodeURIComponent(pass)}`);
+                const res = await response.json();
+                if(res.status === 'success') isValid = true;
+            }
+
+            if(isValid) {
+                currentUser = user;
+                currentPass = pass;
+                
+                // Ubah Navbar
+                document.getElementById('btn-nav-admin').classList.add('hidden');
+                document.getElementById('btn-nav-logout').classList.remove('hidden');
+                
+                // Masuk Dashboard
+                document.getElementById('login-user').value = '';
+                document.getElementById('login-pass').value = '';
+                navigate('login'); // Akan diarahkan ke dashboard karena currentUser terisi
+            } else {
+                errBox.innerText = "Username atau Password salah!";
+                errBox.classList.remove('hidden');
+            }
+        } catch(e) {
+            errBox.innerText = "Terjadi kesalahan server. Coba lagi.";
+            errBox.classList.remove('hidden');
+        } finally {
+            btnText.innerText = "Masuk";
+            btnSpin.classList.add('hidden');
+            document.getElementById('btn-login-submit').disabled = false;
+        }
+    }
+
+    function logoutAdmin() {
+        showCustomConfirm("Konfirmasi Logout", "Apakah Anda yakin ingin keluar dari halaman Admin?", () => {
+            currentUser = null;
+            currentPass = null;
+            document.getElementById('btn-nav-admin').classList.remove('hidden');
+            document.getElementById('btn-nav-logout').classList.add('hidden');
+            navigate('home');
+        });
+    }
+
+    // 3. Load Data Admin
+    async function loadAdminData() {
+        const tbody = document.getElementById('admin-data-body');
+        const loader = document.getElementById('admin-loader');
+        const empty = document.getElementById('admin-empty');
+        
+        tbody.innerHTML = "";
+        loader.classList.remove('hidden');
+        empty.classList.add('hidden');
+
+        try {
+            let data = [];
+            if(IS_PREVIEW) {
+                await new Promise(r => setTimeout(r, 800));
+                data = dummyData;
+            } else {
+                const response = await fetch(`${GAS_URL}?action=getAdminData&user=${encodeURIComponent(currentUser)}&pass=${encodeURIComponent(currentPass)}`);
+                const res = await response.json();
+                if(res.status === 'success') data = res.data;
+                else throw new Error("Akses Ditolak");
+            }
+
+            loader.classList.add('hidden');
+            if(data.length === 0) {
+                empty.classList.remove('hidden');
+                return;
+            }
+
+            data.forEach((row, index) => {
+                let btnAksi = "";
+                if(row.status === "Menunggu Validasi" || row.status === "") {
+                    btnAksi = `<button onclick="validasiPeserta(${row.rowId}, this)" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs px-2 py-1.5 rounded shadow transition"><i class="fas fa-check"></i> Validasi Lunas</button>`;
+                } else {
+                    btnAksi = `<button onclick="batalValidasi(${row.rowId}, this)" class="w-full bg-red-500 hover:bg-red-600 text-white text-xs px-2 py-1.5 rounded shadow transition"><i class="fas fa-times"></i> Batal Validasi</button>`;
+                }
+
+                let linkBukti = row.bukti ? `<a href="${row.bukti}" target="_blank" class="text-blue-600 hover:text-blue-800 bg-blue-50 px-2 py-1 rounded inline-block whitespace-nowrap"><i class="fas fa-external-link-alt"></i> Lihat</a>` : `<span class="text-gray-400 italic text-xs">Kosong</span>`;
+
+                tbody.innerHTML += `
+                    <tr class="border-b hover:bg-gray-100 transition">
+                        <td class="py-3 px-3 font-semibold text-center">${index + 1}</td>
+                        <td class="py-3 px-3 text-xs text-gray-500">${row.timestamp}</td>
+                        <td class="py-3 px-3">
+                            <div class="font-bold text-gray-800">${row.nama}</div>
+                            <div class="text-xs text-gray-500 mt-1"><i class="fas fa-school mr-1"></i>${row.sekolah}</div>
+                        </td>
+                        <td class="py-3 px-3 text-sm text-gray-700">${row.guru}</td>
+                        <td class="py-3 px-3 text-center text-sm">${linkBukti}</td>
+                        <td class="py-3 px-3 text-center" id="status-cell-${row.rowId}">${getStatusBadge(row.status)}</td>
+                        <td class="py-3 px-3 text-center" id="aksi-cell-${row.rowId}">${btnAksi}</td>
+                    </tr>
+                `;
+            });
+
+        } catch (error) {
+            loader.classList.add('hidden');
+            tbody.innerHTML = `<tr><td colspan="7" class="text-center text-red-500 py-4"><i class="fas fa-times-circle"></i> Gagal memuat data Admin. Silakan login kembali.</td></tr>`;
+        }
+    }
+
+    // 4. Aksi Validasi (Admin)
+    function validasiPeserta(rowId, btnElement) {
+        showCustomConfirm("Validasi Pembayaran", "Yakin menandai peserta ini Lunas/Valid?", async () => {
+            
+            const originalText = btnElement.innerHTML;
+            btnElement.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Proses`;
+            btnElement.disabled = true;
+
+            try {
+                if(IS_PREVIEW) {
+                    await new Promise(r => setTimeout(r, 1000));
+                    // Update lokal array dummy untuk preview
+                    const idx = dummyData.findIndex(d => d.rowId === rowId);
+                    if(idx > -1) dummyData[idx].status = "Lunas / Valid";
+                } else {
+                    const response = await fetch(`${GAS_URL}?action=updateStatus&user=${encodeURIComponent(currentUser)}&pass=${encodeURIComponent(currentPass)}&rowId=${rowId}&status=Lunas / Valid`, { method: 'POST' });
+                    const res = await response.json();
+                    if(res.status !== 'success') throw new Error(res.message);
+                }
+                
+                // Update UI tanpa reload penuh
+                document.getElementById(`status-cell-${rowId}`).innerHTML = getStatusBadge("Lunas / Valid");
+                document.getElementById(`aksi-cell-${rowId}`).innerHTML = `<button onclick="batalValidasi(${rowId}, this)" class="w-full bg-red-500 hover:bg-red-600 text-white text-xs px-2 py-1.5 rounded shadow transition"><i class="fas fa-times"></i> Batal Validasi</button>`;
+                
+            } catch(e) {
+                showCustomAlert("Gagal memvalidasi: " + e.message);
+                btnElement.innerHTML = originalText;
+                btnElement.disabled = false;
+            }
+        });
+    }
+
+    function batalValidasi(rowId, btnElement) {
+        showCustomConfirm("Batal Validasi", "Batalkan validasi peserta ini? Status akan kembali menjadi Menunggu.", async () => {
+            
+            const originalText = btnElement.innerHTML;
+            btnElement.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Proses`;
+            btnElement.disabled = true;
+
+            try {
+                if(IS_PREVIEW) {
+                    await new Promise(r => setTimeout(r, 1000));
+                    const idx = dummyData.findIndex(d => d.rowId === rowId);
+                    if(idx > -1) dummyData[idx].status = "Menunggu Validasi";
+                } else {
+                    const response = await fetch(`${GAS_URL}?action=updateStatus&user=${encodeURIComponent(currentUser)}&pass=${encodeURIComponent(currentPass)}&rowId=${rowId}&status=Menunggu Validasi`, { method: 'POST' });
+                    const res = await response.json();
+                    if(res.status !== 'success') throw new Error(res.message);
+                }
+                
+                document.getElementById(`status-cell-${rowId}`).innerHTML = getStatusBadge("Menunggu Validasi");
+                document.getElementById(`aksi-cell-${rowId}`).innerHTML = `<button onclick="validasiPeserta(${rowId}, this)" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs px-2 py-1.5 rounded shadow transition"><i class="fas fa-check"></i> Validasi Lunas</button>`;
+                
+            } catch(e) {
+                showCustomAlert("Gagal membatalkan: " + e.message);
+                btnElement.innerHTML = originalText;
+                btnElement.disabled = false;
+            }
+        }, true); // parameter `true` untuk menjadikannya mode 'bahaya/merah'
+    }
+
+    // Initialize App
+    window.onload = () => {
+        navigate('home');
+    }
+
+    // ==========================================
+    // LOGIKA TAMBAH MANUAL
+    // ==========================================
+    function showAddManualModal() {
+        // Reset form
+        document.getElementById('manual-nama').value = '';
+        document.getElementById('manual-sekolah').value = '';
+        document.getElementById('manual-guru').value = '';
+        document.getElementById('manual-status').value = 'Lunas / Valid';
+        
+        document.getElementById('manual-add-modal').classList.remove('hidden');
+    }
+
+    function closeAddManualModal() {
+        document.getElementById('manual-add-modal').classList.add('hidden');
+    }
+
+    async function submitManualData() {
+        const nama = document.getElementById('manual-nama').value.trim();
+        const sekolah = document.getElementById('manual-sekolah').value.trim();
+        const guru = document.getElementById('manual-guru').value.trim();
+        const status = document.getElementById('manual-status').value;
+
+        if (!nama || !sekolah || !guru) {
+            showCustomAlert("Harap isi semua kolom wajib (Nama, Sekolah, Guru)!");
+            return;
+        }
+
+        const btnSubmit = document.getElementById('btn-submit-manual');
+        const textSubmit = document.getElementById('text-submit-manual');
+        const spinSubmit = document.getElementById('spin-submit-manual');
+
+        btnSubmit.disabled = true;
+        textSubmit.innerText = "Menyimpan...";
+        spinSubmit.classList.remove('hidden');
+
+        try {
+            if (IS_PREVIEW) {
+                // Mode Dummy/Preview
+                await new Promise(r => setTimeout(r, 1000));
+                
+                // Format tanggal hari ini dd/mm/yyyy hh:mm
+                const now = new Date();
+                const ts = `${now.getDate().toString().padStart(2,'0')}/${(now.getMonth()+1).toString().padStart(2,'0')}/${now.getFullYear()} ${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
+                
+                // Tambahkan ke array dummyData
+                const newId = dummyData.length > 0 ? Math.max(...dummyData.map(d => d.rowId)) + 1 : 2;
+                dummyData.push({
+                    rowId: newId,
+                    timestamp: ts,
+                    nama: nama,
+                    sekolah: sekolah,
+                    guru: guru,
+                    bukti: "", // Kosong karena manual
+                    status: status
+                });
+
+                closeAddManualModal();
+                showCustomAlert("Data manual berhasil ditambahkan (Mode Preview)!");
+                loadAdminData(); // Refresh tabel admin
+                
+            } else {
+                // Mode Live GAS
+                // Siapkan form data
+                const formData = new URLSearchParams();
+                formData.append('action', 'addManualData');
+                formData.append('user', currentUser);
+                formData.append('pass', currentPass);
+                formData.append('nama', nama);
+                formData.append('sekolah', sekolah);
+                formData.append('guru', guru);
+                formData.append('status', status);
+
+                const response = await fetch(GAS_URL, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                });
+                
+                const res = await response.json();
+                
+                if (res.status === 'success') {
+                    closeAddManualModal();
+                    showCustomAlert("Data berhasil ditambahkan ke Spreadsheet!");
+                    loadAdminData(); // Refresh tabel admin
+                } else {
+                    throw new Error(res.message || "Gagal menyimpan ke server");
+                }
+            }
+        } catch (error) {
+            showCustomAlert("Error: " + error.message);
+        } finally {
+            btnSubmit.disabled = false;
+            textSubmit.innerText = "Simpan Data";
+            spinSubmit.classList.add('hidden');
+        }
+    }
+
+</script>
+</body>
+</html>
