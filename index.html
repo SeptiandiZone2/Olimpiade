@@ -553,7 +553,7 @@
                         <img src="https://i.postimg.cc/85ptj0zm/Whats-App-Image-2026-09-02-at-22-15-02.jpg" onerror="this.src='https://placehold.co/80x80/ffffff/000000?text=MGMP'" alt="Logo MGMP" class="h-16 w-16 object-contain">
                     </div>
                     <div class="text-center flex-grow px-2">
-                        <h4 class="text-xs font-bold uppercase tracking-wider">Pemerintah Daerah Kabupaten Sukabumi</h4>
+                        <h4 class="text-xs font-bold uppercase tracking-wider">Pemerintah Kabupaten Sukabumi</h4>
                         <h3 class="text-sm font-bold uppercase tracking-wide">Musyawarah Guru Mata Pelajaran (MGMP)</h3>
                         <h2 class="text-base sm:text-lg font-extrabold uppercase text-pancasila-blue">Pendidikan Pancasila SMP</h2>
                         <p class="text-[10px] text-gray-700 italic">
@@ -787,7 +787,7 @@
                                 <img src="https://i.postimg.cc/85ptj0zm/Whats-App-Image-2026-09-02-at-22-15-02.jpg" onerror="this.src='https://placehold.co/80x80/ffffff/000000?text=MGMP'" alt="Logo MGMP" class="h-16 w-16 sm:h-20 sm:w-20 object-contain">
                             </div>
                             <div class="text-center flex-grow px-2">
-                                <h4 class="text-xs sm:text-sm font-bold uppercase tracking-wider">Pemerintah Daerah Kabupaten Sukabumi</h4>
+                                <h4 class="text-xs sm:text-sm font-bold uppercase tracking-wider">Pemerintah Kabupaten Sukabumi</h4>
                                 <h3 class="text-sm sm:text-base md:text-lg font-bold uppercase tracking-wide">Musyawarah Guru Mata Pelajaran (MGMP)</h3>
                                 <h2 class="text-base sm:text-xl font-extrabold uppercase text-pancasila-blue">Pendidikan Pancasila SMP</h2>
                                 <p class="text-[11px] sm:text-xs text-gray-700 italic mt-0.5">
@@ -1714,13 +1714,15 @@
         let html = "";
         data.forEach((row, index) => {
             const isEven = (index % 2 === 0);
+            const num = index + 1;
+            const dots = ".................";
             const ttdCell = isEven
-                ? `<div class="text-left font-mono text-[11px] pl-2">${index + 1}. ......................................</div>`
-                : `<div class="text-right font-mono text-[11px] pr-2">${index + 1}. ......................................</div>`;
+                ? `<div class="text-left font-mono text-xs pl-2 whitespace-nowrap"><span class="font-bold inline-block min-w-[20px]">${num}.</span> ${dots}</div>`
+                : `<div class="text-right font-mono text-xs pr-2 whitespace-nowrap"><span class="font-bold inline-block min-w-[20px]">${num}.</span> ${dots}</div>`;
 
             html += `
                 <tr class="text-xs">
-                    <td class="border border-black py-2 px-1 text-center font-semibold">${index + 1}</td>
+                    <td class="border border-black py-2 px-1 text-center font-semibold">${num}</td>
                     <td class="border border-black py-2 px-2 text-center font-mono text-[11px]">${row.nisn || '-'}</td>
                     <td class="border border-black py-2 px-2 font-bold">${row.nama}</td>
                     <td class="border border-black py-2 px-2">${row.sekolah}</td>
